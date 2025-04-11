@@ -36,8 +36,8 @@ img, video {
 }
 
 .filters {
-	font-size: 1.3rem;
-	line-height: 1.2em;
+	font-size: 1rem;
+	line-height: 1em;
 	padding: 1rem;
 	align-self: start;
 	position: sticky;
@@ -96,8 +96,8 @@ a:hover {
 h1, h2, p {
 	display: inline-block;
 	clear: both;
-	font-size: 1.3rem;
-	line-height: 1.2em;
+	font-size: 1rem;
+	line-height: 1em;
 	font-weight: normal;
 	margin: 0;
 	max-width: 30em;
@@ -257,7 +257,7 @@ img[src*='playdate'],
 	}
 
 	h1, h2, p {
-		font-size: 1.3rem;
+		font-size: 1rem;
 	}
 
 	.project-thumbnail-info-description {
@@ -265,7 +265,7 @@ img[src*='playdate'],
 	}
 
 	.filters {
-		font-size: 1.3rem;
+		font-size: 1rem;
 		align-self: start;
 		position: sticky;
 		top: var(--base-unit-s);
