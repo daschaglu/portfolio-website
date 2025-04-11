@@ -11,7 +11,7 @@
 :root {
 	--base-unit-s: 18px;
 	--base-unit-m: calc(var(--base-unit-s) * 1.5);
-	--base-unit-l: calc(var(--base-unit-s) * 3);
+	--base-unit-l: calc(var(--base-unit-s) * 2.5);
 	--color-background: rgb(253, 253, 253);
 	--color-text: rgb(0, 0, 0);
 	--color-accent: rgb(0, 0, 0);
@@ -45,10 +45,10 @@ img, video {
 	gap: 1rem;
 	display: flex;
 	z-index: 100;
-	background-color: white;
+	color: white;
+	mix-blend-mode: difference;
 	width: fit-content;
-	-webkit-text-stroke: 1px black;
-	mix-blend-mode:color-burn;
+	overflow-x: auto;
 
 }
 
@@ -175,7 +175,7 @@ main { grid-column: 4 / span 10; }
 .project-thumbnail {
 	margin-top: 0;
 	margin-left: 15%;
-	margin-bottom: calc(var(--base-unit-s) / 2);
+	margin-bottom: calc(var(--base-unit-s) / 3);
 	grid-row: 1;
 }
 
@@ -202,16 +202,14 @@ main { grid-column: 4 / span 10; }
 
 /* IMAGE STYLES */
 
-img[src='images/keychain.png'],
-img[src='images/newspaper_cover_web.png'] {
+img[src='images/keychain.png'] {
 	width: 80%;
 	display: block;
 	margin: 0 auto 6px auto;
 }
 
-.project-thumbnail-cover img[src='images/playdate-1.png'],
-.project-thumbnail-cover img[src='images/playdate_3_web.png'],
-.project-thumbnail-cover img[src='images/playdate_session_2_web.png'] {
+img[src*='playdate'], 
+.project-thumbnail-cover video {
 	width: 100%;
 	display: block;
 	margin: 0 auto;
@@ -219,12 +217,6 @@ img[src='images/newspaper_cover_web.png'] {
 
 .project-thumbnail-cover img[src='images/playdate_session_2_web.png'] {
 	margin-bottom: 6px;
-}
-
-.project-thumbnail img[src="images/paper_web_3.png"],
-.project-thumbnail img[src="images/paper_web_2.png"],
-.project-thumbnail img[src="images/paper_web_1.png"] {
-    margin-bottom: -49px;
 }
 
 .project-thumbnail-cover video {
@@ -277,10 +269,14 @@ img[src='images/newspaper_cover_web.png'] {
 		align-self: start;
 		position: sticky;
 		top: var(--base-unit-s);
-		background-color: pink;
-		width: fit-content;
-		z-index: 100;
+		color: white;
+		mix-blend-mode: difference;
+		width: fit-content; 
+		z-index: 100; 
+		overflow-x: auto;
+		max-width: calc(100% - 2 * var(--base-unit-s));
 	}
+
 
 	.project-thumbnail {
 		margin-top: 0;
@@ -289,4 +285,17 @@ img[src='images/newspaper_cover_web.png'] {
 	}
 }
 
+
+@media screen and (max-width: 600px) {
+	.filters {
+		width: calc(100% - 2 * var(--base-unit-s));
+
+		font-size: min(20px, 4.7vw);
+
+		overflow-x: auto;
+
+		justify-content: space-between;
+		gap: .25rem;
+	}
+}
 
