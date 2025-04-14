@@ -13,7 +13,7 @@
 	--base-unit-m: calc(var(--base-unit-s) * 1.5);
 	--base-unit-l: calc(var(--base-unit-s) * 2.5);
 	--color-background: rgb(253, 253, 253);
-	--color-text: rgb(221, 0, 0);
+	--color-text: rgb(0, 0, 0);
 	--color-accent: rgb(0, 0, 0);
 }
 
@@ -121,7 +121,7 @@ p + p {
 }
 
 .column-aside { 
-	-webkit-text-fill-color: rgb(221, 0, 0);
+	-webkit-text-fill-color: rgb(0, 0, 0);
     grid-column: 10 / span 3; 
     grid-row: 1; 
     padding-left: 20px; 
@@ -228,7 +228,7 @@ img[src*='playdate'],
 	pointer-events: none;
 }
 .project-thumbnail-cover video[src*="glass-pieces"] {
-	height: 100vh !important;
+	height: 120vh !important;
 	width: auto !important;
 	object-fit: contain !important;
 	display: block;
