@@ -227,6 +227,13 @@ img[src*='playdate'],
 	max-height: 100vh;
 	pointer-events: none;
 }
+.project-thumbnail-cover video[src*="glass-pieces"] {
+	height: 100vh !important;
+	width: auto !important;
+	object-fit: contain !important;
+	display: block;
+	margin: 0 auto;
+}
 
 /* RESPONSIVE DESIGN */
 
