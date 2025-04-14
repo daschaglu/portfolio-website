@@ -220,7 +220,7 @@ img[src*='playdate'],
 
 .project-thumbnail-cover video {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	display: block;
 	object-fit: cover;
 	margin: 0 auto;
@@ -228,7 +228,7 @@ img[src*='playdate'],
 	pointer-events: none;
 }
 .project-thumbnail-cover video[src*="glass-pieces"] {
-	height: 120vh !important;
+	height: 100vh !important;
 	width: auto !important;
 	object-fit: contain !important;
 	display: block;
