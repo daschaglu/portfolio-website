@@ -32,7 +32,6 @@ body {
 img, video {
 	width: 100%;
 	display: block;
-	border: 1px solid rgb(255, 255, 255);
 }
 
 .filters {
@@ -226,6 +225,7 @@ img[src*='playdate'],
 	object-fit: cover;
 	margin: 0 auto;
 	max-height: 100vh;
+	pointer-events: none;
 }
 
 /* RESPONSIVE DESIGN */
