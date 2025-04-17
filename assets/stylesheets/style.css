@@ -332,3 +332,11 @@ img[src*='playdate'],
 		text-align: left;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	video {
+		pointer-events: none;
+		user-select: none;
+		touch-action: none;
+	}
+}
