@@ -5,6 +5,10 @@
 @font-face { font-family: 'AuthenticSans'; src: url('../fonts/AUTHENTICSans-90.otf'); }
 @font-face { font-family: 'ACaslonPro-Regular'; src: url('../fonts/ACaslonPro-Regular.ttf'); }
 @font-face { font-family: 'ACaslonPro-Italic'; src: url('../fonts/ACaslonPro-Italic.ttf'); }
+@font-face { font-family: 'Arimo-Regular'; src: url('../fonts/IMFellEnglish-Regular.ttf') format('truetype');
+}
+@font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype');
+}
 
 /* VARIABLES */
 
@@ -20,7 +24,7 @@
 /* GLOBAL STYLES */
 
 html {
-	font-family: 'ACaslonPro-Regular', Helvetica, sans-serif;
+	font-family: 'Arimo-Regular', Helvetica, sans-serif;
 	font-size: var(--base-unit-s);
 }
 
@@ -36,7 +40,7 @@ img, video {
 }
 
 .filters {
-	font-size: 1rem;
+	font-size: 1.1rem;
 	line-height: 1.1em;
 	padding: 1rem;
 	align-self: start;
@@ -54,7 +58,7 @@ img, video {
 
 .filters input { display: none; }
 .filters div:has(:checked) label { 
-    font-family: 'ACaslonPro-Italic', serif; 
+    font-family: 'Arimo-Italic', sans-serif; 
 }
 
 .hidden {
@@ -66,11 +70,8 @@ img, video {
 a {
 	color: var(--color-accent);
 	text-decoration: none;
-	font-family: 'ACaslonPro-Italic', serif;
+	font-family: 'Arimo-Italic', sans-serif; 
 
-}
-.italic {
-	font-family: 'ACaslonPro-Italic', serif;
 }
 
 a:hover {
@@ -82,7 +83,7 @@ a:hover {
 	text-decoration: none;
 	display: flex;
 	flex-direction: column-reverse;
-	font-family: 'ACaslonPro-Regular', serif;
+	font-family: 'Arimo-Regular', sans-serif; 
 }
 
 .project-thumbnail a:hover {
@@ -96,13 +97,26 @@ a:hover {
 h1, h2, p {
 	display: inline-block;
 	clear: both;
-	font-size: 1rem;
-	line-height: 1.1em;
+	font-size: 1.1rem;
+	line-height: 1.15em;
 	font-weight: normal;
 	margin: 0;
 	max-width: 50em;
 	
 }
+
+.project-thumbnail h1 {
+	font-family: 'Arimo-Italic', sans-serif;
+	margin-bottom: 0.3em;
+	display: inline-block;
+	clear: both;
+	font-size: 1.1rem;
+	line-height: 1.15em;
+	font-weight: normal;
+	margin: 0;
+	max-width: 50em;
+}
+
 
 p + p {
 	margin-top: 1.1em;
@@ -129,9 +143,7 @@ p + p {
     padding-left: 20px; 
     padding-top: 20px; 
     padding-bottom: 20px; 
-	background-color: rgba(9, 255, 0, 0.765);
-		width: fit-content;
-		border: 1px solid black;
+	width: fit-content;
 }
 
 .column-main { 
@@ -217,6 +229,7 @@ img[src*='playdate'],
 	margin: 0 auto;
 }
 
+
 .project-thumbnail-cover img[src='images/playdate_session_2_web.png'],
 .project-thumbnail-cover img[src='images/playdate_3_web.png'] {
 	margin-bottom: 6px;
@@ -267,6 +280,7 @@ img[src*='playdate'],
 	.project-thumbnail-info-description {
 		display: flex;
 	}
+	
 
 	.filters {
 		font-size: 1rem;
@@ -287,6 +301,13 @@ img[src*='playdate'],
 		margin-bottom: calc(var(--base-unit-s) / 2);
 	}
 }
+
+@media (min-width: 1025px) {
+	.project-thumbnail-info-description {
+	  column-count: 2;
+	  column-gap: var(--base-unit-s); /* optional: control spacing between columns */
+	}
+  }
 
 @media screen and (max-width: 600px) {
 	.filters {
