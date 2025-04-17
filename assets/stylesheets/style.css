@@ -217,7 +217,8 @@ img[src*='playdate'],
 	margin: 0 auto;
 }
 
-.project-thumbnail-cover img[src='images/playdate_session_2_web.png'] {
+.project-thumbnail-cover img[src='images/playdate_session_2_web.png'],
+.project-thumbnail-cover img[src='images/playdate_3_web.png'] {
 	margin-bottom: 6px;
 }
 
