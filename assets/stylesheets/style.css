@@ -172,6 +172,15 @@ nav.stick-to-top::before {
 
 main { grid-column: 4 / span 10; }
 
+.footer-inside-main {
+    font-size: 1.1rem;
+    padding-bottom: 20px;
+    color: rgb(97, 97, 97);
+    font-family: 'Arimo-Regular', sans-serif;
+    text-align: left;
+	margin-left: 15%;
+}
+
 #project-grid {
 	list-style: none;
 	padding: 0;
@@ -275,11 +284,6 @@ img[src*='playdate'],
 		display: flex;
 	}
 
-	.column-aside {
-		border: 1px solid black;
-	}
-	
-
 	.filters {
 		font-size: 1rem;
 		align-self: start;
@@ -317,5 +321,14 @@ img[src*='playdate'],
 
 		justify-content: space-between;
 		gap: .25rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.footer-inside-main {
+		margin-left: 0;
+		padding-right: var(--base-unit-s);
+		font-size: 0.9rem;
+		text-align: left;
 	}
 }
