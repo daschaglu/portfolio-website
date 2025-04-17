@@ -274,6 +274,10 @@ img[src*='playdate'],
 	.project-thumbnail-info-description {
 		display: flex;
 	}
+
+	.column-aside {
+		border: 1px solid black;
+	}
 	
 
 	.filters {
