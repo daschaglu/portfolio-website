@@ -309,6 +309,12 @@ img[src*='playdate'],
 	}
   }
 
+  @media (max-width: 600px) {
+    .project-video {
+        pointer-events: none;
+    }
+}
+
 @media screen and (max-width: 600px) {
 	.filters {
 		width: calc(100% - 2 * var(--base-unit-s));
