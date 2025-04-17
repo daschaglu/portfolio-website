@@ -10,7 +10,7 @@
 	--base-unit-s: 18px;
 	--base-unit-m: calc(var(--base-unit-s) * 1.5);
 	--base-unit-l: calc(var(--base-unit-s) * 2.5);
-	--color-background: rgb(253, 253, 253);
+	--color-background: rgb(255, 255, 255);
 	--color-text: rgb(0, 0, 0);
 	--color-accent: rgb(0, 0, 0);
 }
