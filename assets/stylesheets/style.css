@@ -58,6 +58,7 @@ img, video {
 }
 
 
+
 .hidden {
 	display: none;
 }
@@ -69,6 +70,9 @@ a {
 	text-decoration: none;
 	font-family: 'ACaslonPro-Italic', serif;
 
+}
+.italic {
+	font-family: 'ACaslonPro-Italic', serif;
 }
 
 a:hover {
