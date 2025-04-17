@@ -1,10 +1,4 @@
 /* FONTS */
-
-@font-face { font-family: 'Routed-Gothic'; src: url('../fonts/routed-gothic.ttf'); }
-@font-face { font-family: 'jgs'; src: url('../fonts/jgs_Font.ttf'); }
-@font-face { font-family: 'AuthenticSans'; src: url('../fonts/AUTHENTICSans-90.otf'); }
-@font-face { font-family: 'ACaslonPro-Regular'; src: url('../fonts/ACaslonPro-Regular.ttf'); }
-@font-face { font-family: 'ACaslonPro-Italic'; src: url('../fonts/ACaslonPro-Italic.ttf'); }
 @font-face { font-family: 'Arimo-Regular'; src: url('../fonts/IMFellEnglish-Regular.ttf') format('truetype');
 }
 @font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype');
@@ -308,12 +302,6 @@ img[src*='playdate'],
 	  column-gap: var(--base-unit-s); /* optional: control spacing between columns */
 	}
   }
-
-  @media (max-width: 600px) {
-    .project-video {
-        pointer-events: none;
-    }
-}
 
 @media screen and (max-width: 600px) {
 	.filters {
