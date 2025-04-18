@@ -34,8 +34,8 @@ img, video {
 }
 
 .filters {
-	font-size: 1.1rem;
-	line-height: 1.1em;
+	font-size: 1.15rem;
+	line-height: 1.15em;
 	padding: 1rem;
 	align-self: start;
 	position: sticky;
@@ -64,7 +64,7 @@ img, video {
 a {
 	color: var(--color-accent);
 	text-decoration: none;
-	font-family: 'Arimo-Italic', sans-serif; 
+	font-family: 'Arimo-Regular', sans-serif; 
 
 }
 
@@ -91,7 +91,7 @@ a:hover {
 h1, h2, p {
 	display: inline-block;
 	clear: both;
-	font-size: 1.1rem;
+	font-size: 1.15rem;
 	line-height: 1.15em;
 	font-weight: normal;
 	margin: 0;
@@ -104,13 +104,12 @@ h1, h2, p {
 	margin-bottom: 0.3em;
 	display: inline-block;
 	clear: both;
-	font-size: 1.1rem;
-	line-height: 1.15em;
+	font-size: 1.15rem;
+	line-height: 1.5em;
 	font-weight: normal;
 	margin: 0;
 	max-width: 50em;
 }
-
 
 p + p {
 	margin-top: 1.1em;
@@ -173,7 +172,7 @@ nav.stick-to-top::before {
 main { grid-column: 4 / span 10; }
 
 .footer-inside-main {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     padding-bottom: 20px;
     color: rgb(97, 97, 97);
     font-family: 'Arimo-Regular', sans-serif;
@@ -285,7 +284,7 @@ img[src*='playdate'],
 	}
 
 	.filters {
-		font-size: 1rem;
+		font-size: 1.15rem;
 		align-self: start;
 		position: sticky;
 		top: var(--base-unit-s);
@@ -328,7 +327,7 @@ img[src*='playdate'],
 	.footer-inside-main {
 		margin-left: 0;
 		padding-right: var(--base-unit-s);
-		font-size: 0.9rem;
+		font-size: 1rem;
 		text-align: left;
 	}
 }
