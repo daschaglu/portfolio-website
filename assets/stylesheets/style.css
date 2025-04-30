@@ -109,6 +109,7 @@ h1, h2, p {
 	font-weight: normal;
 	margin: 0;
 	max-width: 50em;
+	text-decoration: underline 2px black solid;
 }
 
 p + p {
@@ -174,8 +175,8 @@ main { grid-column: 4 / span 10; }
 .footer-inside-main {
     font-size: 1.15rem;
     padding-bottom: 20px;
-    color: rgb(97, 97, 97);
-    font-family: 'Arimo-Regular', sans-serif;
+    color: rgb(0, 0, 0);
+    font-family: 'Arimo-Italic', sans-serif;
     text-align: left;
 	margin-left: 15%;
 }
