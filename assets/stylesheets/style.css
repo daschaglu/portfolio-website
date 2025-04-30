@@ -3,6 +3,10 @@
 }
 @font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype');
 }
+@font-face { font-family: 'AUTHENTICSans-90'; src: url('../fonts/AUTHENTICSans-90.otf') format('truetype');
+}
+@font-face { font-family: 'AUTHENTICSans-Condensed-90'; src: url('../fonts/AUTHENTICSans-Condensed-90.otf') format('truetype');
+}
 
 /* VARIABLES */
 
@@ -18,7 +22,7 @@
 /* GLOBAL STYLES */
 
 html {
-	font-family: 'Arimo-Regular', Helvetica, sans-serif;
+	font-family: 'AUTHENTICSans-90', Helvetica, sans-serif;
 	font-size: var(--base-unit-s);
 }
 
@@ -34,7 +38,7 @@ img, video {
 }
 
 .filters {
-	font-size: 1.15rem;
+	font-size: 1rem;
 	line-height: 1.15em;
 	padding: 1rem;
 	align-self: start;
@@ -52,7 +56,7 @@ img, video {
 
 .filters input { display: none; }
 .filters div:has(:checked) label { 
-    font-family: 'Arimo-Italic', sans-serif; 
+    font-family: 'AUTHENTICSans-Condensed-90', sans-serif; 
 }
 
 .hidden {
@@ -64,7 +68,7 @@ img, video {
 a {
 	color: var(--color-accent);
 	text-decoration: none;
-	font-family: 'Arimo-Italic', sans-serif; 
+	font-family: 'AUTHENTICSans-Condensed-90', sans-serif; 
 
 }
 
@@ -77,7 +81,7 @@ a:hover {
 	text-decoration: none;
 	display: flex;
 	flex-direction: column-reverse;
-	font-family: 'Arimo-Regular', sans-serif; 
+	font-family: 'AUTHENTICSans-90', sans-serif; 
 }
 
 .project-thumbnail a:hover {
@@ -91,7 +95,7 @@ a:hover {
 h1, h2, p {
 	display: inline-block;
 	clear: both;
-	font-size: 1.15rem;
+	font-size: 1rem;
 	line-height: 1.15em;
 	font-weight: normal;
 	margin: 0;
@@ -100,16 +104,15 @@ h1, h2, p {
 }
 
 .project-thumbnail h1 {
-	font-family: 'Arimo-Italic', sans-serif;
+	font-family: 'AUTHENTICSans-Condensed-90', sans-serif;
 	margin-bottom: 0.3em;
 	display: inline-block;
 	clear: both;
-	font-size: 1.15rem;
+	font-size: 1rem;
 	line-height: 1.5em;
 	font-weight: normal;
 	margin: 0;
 	max-width: 50em;
-	text-decoration: underline 2px black solid;
 }
 
 p + p {
@@ -176,7 +179,7 @@ main { grid-column: 4 / span 10; }
     font-size: 1.15rem;
     padding-bottom: 20px;
     color: rgb(0, 0, 0);
-    font-family: 'Arimo-Italic', sans-serif;
+    font-family: 'AUTHENTICSans-Condensed-90', sans-serif;
     text-align: left;
 	margin-left: 15%;
 }
@@ -285,7 +288,7 @@ img[src*='playdate'],
 	}
 
 	.filters {
-		font-size: 1.15rem;
+		font-size: 1rem;
 		align-self: start;
 		position: sticky;
 		top: var(--base-unit-s);
