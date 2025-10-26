@@ -3,9 +3,9 @@
 }
 @font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype');
 }
-@font-face { font-family: 'AUTHENTICSans-90'; src: url('../fonts/AUTHENTICSans-90.otf') format('truetype');
+@font-face { font-family: 'InstrumentSerif-Regular'; src: url('../fonts/InstrumentSerif-Regular.otf') format('truetype');
 }
-@font-face { font-family: 'AUTHENTICSans-Condensed-90'; src: url('../fonts/AUTHENTICSans-Condensed-90.otf') format('truetype');
+@font-face { font-family: 'InstrumentSerif-Italic'; src: url('../fonts/InstrumentSerif-Italic.otf') format('truetype');
 }
 
 /* VARIABLES */
@@ -22,7 +22,7 @@
 /* GLOBAL STYLES */
 
 html {
-	font-family: 'AUTHENTICSans-90', Helvetica, sans-serif;
+	font-family: 'InstrumentSerif-Regular', 'Times New Roman', Times, serif;
 	font-size: var(--base-unit-s);
 }
 
@@ -56,7 +56,7 @@ img, video {
 
 .filters input { display: none; }
 .filters div:has(:checked) label { 
-    font-family: 'AUTHENTICSans-Condensed-90', sans-serif; 
+    font-family: 'I', sans-serif; 
 }
 
 .hidden {
@@ -68,7 +68,7 @@ img, video {
 a {
 	color: var(--color-accent);
 	text-decoration: none;
-	font-family: 'AUTHENTICSans-Condensed-90', sans-serif; 
+	font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif; 
 
 }
 
@@ -81,7 +81,7 @@ a:hover {
 	text-decoration: none;
 	display: flex;
 	flex-direction: column-reverse;
-	font-family: 'AUTHENTICSans-90', sans-serif; 
+	font-family: 'InstrumentSerif-Regular', 'Times New Roman', Times, serif; 
 }
 
 .project-thumbnail a:hover {
@@ -104,7 +104,7 @@ h1, h2, p {
 }
 
 .project-thumbnail h1 {
-	font-family: 'AUTHENTICSans-Condensed-90', sans-serif;
+	font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif;
 	margin-bottom: 0.3em;
 	display: inline-block;
 	clear: both;
@@ -179,7 +179,7 @@ main { grid-column: 4 / span 10; }
     font-size: 1.15rem;
     padding-bottom: 20px;
     color: rgb(0, 0, 0);
-    font-family: 'AUTHENTICSans-Condensed-90', sans-serif;
+    font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif; 
     text-align: left;
 	margin-left: 15%;
 }
