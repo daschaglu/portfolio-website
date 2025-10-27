@@ -1,8 +1,6 @@
 /* FONTS */
-@font-face { font-family: 'Arimo-Regular'; src: url('../fonts/IMFellEnglish-Regular.ttf') format('truetype'); }
-@font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype'); }
-@font-face { font-family: 'routed-gothic.ttf'; src: url('../fonts/Panchi-Mono.otf') format('truetype'); }
-@font-face { font-family: 'routed-gothic-italic.ttf'; src: url('../fonts/Panchi-Mono.otf') format('truetype'); }
+@font-face { font-family: 'routed-gothic.ttf'; src: url('../fonts/Times\ NR\ Seven\ MT\ Std\ Regular.otf') format('truetype'); }
+@font-face { font-family: 'routed-gothic-italic.ttf'; src: url('../fonts/Times\ NR\ Seven\ MT\ Std\ Italic.otf') format('truetype'); }
 
 /* VARIABLES */
 :root {
@@ -32,8 +30,8 @@ img, video {
 }
 
 .filters {
-	font-size: 1rem;
-	line-height: 1.15em;
+	font-size: 0.9rem;
+	line-height: 1.2em;
 	padding: 1rem;
 	align-self: start;
 	position: sticky;
@@ -41,7 +39,7 @@ img, video {
 	gap: 1rem;
 	display: flex;
 	z-index: 100;
-	color: white;
+	color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
 	width: fit-content;
 	overflow-x: auto;
@@ -50,7 +48,7 @@ img, video {
 .filters input { display: none; }
 
 .filters div:has(:checked) label { 
-	font-family: 'I', sans-serif; 
+	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif;
 }
 
 .hidden {
@@ -89,8 +87,8 @@ a:hover {
 h1, h2, p {
 	display: block;
 	clear: both;
-	font-size: 1rem;
-	line-height: 1.15em;
+	font-size: 0.9rem;
+	line-height: 1.2em;
 	font-weight: normal;
 	margin: 0;
 	max-width: 50em;
@@ -101,8 +99,8 @@ h1, h2, p {
 	margin-bottom: 0.3em;
 	display: block; /* ✅ also ensure it's block */
 	clear: both;
-	font-size: 1rem;
-	line-height: 1.5em;
+	font-size: 0.9rem;
+	line-height: 1.2em;
 	font-weight: normal;
 	max-width: 50em;
 }
@@ -126,7 +124,7 @@ p + p {
 
 .column-aside { 
 	-webkit-text-fill-color: rgb(0, 0, 0);
-	grid-column: 10 / span 3; 
+	grid-column: 9 / span 5; 
 	grid-row: 1; 
 	padding-left: 20px; 
 	padding-top: 20px; 
@@ -168,7 +166,7 @@ nav.stick-to-top::before {
 main { grid-column: 4 / span 10; }
 
 .footer-inside-main {
-	font-size: 1.15rem;
+	font-size: 0.9rem;
 	padding-bottom: 20px;
 	color: rgb(0, 0, 0);
 	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif; 
@@ -272,7 +270,7 @@ img[src*='playdate'],
 	}
 
 	h1, h2, p {
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 
 	.project-thumbnail-info-description {
@@ -280,7 +278,7 @@ img[src*='playdate'],
 	}
 
 	.filters {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		align-self: start;
 		position: sticky;
 		top: var(--base-unit-s);
@@ -313,7 +311,7 @@ img[src*='playdate'],
 	.footer-inside-main {
 		margin-left: 0;
 		padding-right: var(--base-unit-s);
-		font-size: 1rem;
+		font-size: 0.9rem;
 		text-align: left;
 	}
 }
