@@ -36,7 +36,7 @@ img, video {
 	align-self: start;
 	position: sticky;
 	top: var(--base-unit-s);
-	gap: 1rem;
+	gap: 0.9rem;
 	display: flex;
 	z-index: 100;
 	color: rgb(255, 255, 255);
@@ -168,8 +168,8 @@ main { grid-column: 4 / span 10; }
 .footer-inside-main {
 	font-size: 0.9rem;
 	padding-bottom: 20px;
-	color: rgb(0, 0, 0);
-	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif; 
+	color: rgb(156, 156, 156);
+	font-family: 'routed-gothic.ttf', Arial, sans-serif; 
 	text-align: left;
 	margin-left: 15%;
 }
