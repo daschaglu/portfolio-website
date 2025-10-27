@@ -1,8 +1,8 @@
 /* FONTS */
 @font-face { font-family: 'Arimo-Regular'; src: url('../fonts/IMFellEnglish-Regular.ttf') format('truetype'); }
 @font-face { font-family: 'Arimo-Italic'; src: url('../fonts/IMFellEnglish-Italic.ttf') format('truetype'); }
-@font-face { font-family: 'InstrumentSerif-Regular'; src: url('../fonts/InstrumentSerif-Regular.otf') format('truetype'); }
-@font-face { font-family: 'InstrumentSerif-Italic'; src: url('../fonts/InstrumentSerif-Italic.otf') format('truetype'); }
+@font-face { font-family: 'routed-gothic.ttf'; src: url('../fonts/Panchi-Mono.otf') format('truetype'); }
+@font-face { font-family: 'routed-gothic-italic.ttf'; src: url('../fonts/Panchi-Mono.otf') format('truetype'); }
 
 /* VARIABLES */
 :root {
@@ -16,7 +16,7 @@
 
 /* GLOBAL STYLES */
 html {
-	font-family: 'InstrumentSerif-Regular', 'Times New Roman', Times, serif;
+	font-family: 'routed-gothic.ttf', Arial, sans-serif;
 	font-size: var(--base-unit-s);
 }
 
@@ -61,7 +61,7 @@ img, video {
 a {
 	color: var(--color-accent);
 	text-decoration: none;
-	font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif; 
+	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif;
 }
 
 a:hover {
@@ -73,7 +73,7 @@ a:hover {
 	text-decoration: none;
 	display: flex;
 	flex-direction: column-reverse;
-	font-family: 'InstrumentSerif-Regular', 'Times New Roman', Times, serif; 
+	font-family: 'routed-gothic.ttf', Arial, sans-serif; 
 }
 
 .project-thumbnail a:hover {
@@ -97,7 +97,7 @@ h1, h2, p {
 }
 
 .project-thumbnail h1 {
-	font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif;
+	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif;
 	margin-bottom: 0.3em;
 	display: block; /* ✅ also ensure it's block */
 	clear: both;
@@ -171,7 +171,7 @@ main { grid-column: 4 / span 10; }
 	font-size: 1.15rem;
 	padding-bottom: 20px;
 	color: rgb(0, 0, 0);
-	font-family: 'InstrumentSerif-Italic', 'Times New Roman', Times, serif; 
+	font-family: 'routed-gothic-italic.ttf', Arial, sans-serif; 
 	text-align: left;
 	margin-left: 15%;
 }
