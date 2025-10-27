@@ -32,7 +32,7 @@ img, video {
 .filters {
 	font-size: 0.9rem;
 	line-height: 1.2em;
-	padding: 1rem;
+	padding: 0.8rem;
 	align-self: start;
 	position: sticky;
 	top: var(--base-unit-s);
@@ -99,7 +99,7 @@ h1, h2, p {
 	margin-bottom: 0.3em;
 	display: block; /* ✅ also ensure it's block */
 	clear: both;
-	font-size: 0.9rem;
+	font-size: 0.7rem;
 	line-height: 1.2em;
 	font-weight: normal;
 	max-width: 50em;
@@ -133,9 +133,9 @@ p + p {
 	top: var(--base-unit-s);
 } 
 
-.column-main { 
-	grid-column: 1 / span 8; 
-	grid-row: 1; 
+.column-main {
+  grid-column: 1 / span 8;
+  grid-row: 1;
 }
 
 .column-project, .column-next { 
@@ -302,7 +302,7 @@ img[src*='playdate'],
 @media screen and (max-width: 600px) {
 	.filters {
 		width: calc(100% - 2 * var(--base-unit-s));
-		font-size: min(20px, 4.7vw);
+		font-size: min(19px, 4.7vw);
 		overflow-x: auto;
 		justify-content:space-evenly;
 		gap: .25rem;
@@ -358,5 +358,22 @@ img[src*='playdate'],
     align-self: auto;
     width: 100%;
     padding: 10px;
+  }
+}
+
+@media screen and (min-width: 1025px) { 
+  .column-main {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    margin-top: calc(-7.3 * var(--base-unit-s) + 20px); 
+  }
+}
+
+/* For smaller screens, keep default spacing */
+@media screen and (max-width: 1024px) {
+  .column-main {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    margin-top: 0; 
   }
 }
