@@ -116,7 +116,7 @@ p + p {
 }
 
 .column-grid-wrapper { 
-	grid-template-columns: repeat(12, 1fr); 
+	grid-template-columns: repeat(10, 1fr); 
 }
 .column-grid-inner { 
 	grid-template-columns: repeat(9, 1fr); 
