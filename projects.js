@@ -111,12 +111,12 @@ const projects = [
       "images/liza-titles-1.jpg"],
   },
 
-   {
-    category: "editorial",
-    width: 30,
-    caption: "Dog on The Beach",
-    media: ["videos/doggy-on-the-beach.mp4"],
-  },
+   //{
+   // category: "editorial",
+   // width: 30,
+   // caption: "Dog on The Beach",
+   //media: ["videos/doggy-on-the-beach.mp4"],
+ // },
 
   {
     category: "editorial",
