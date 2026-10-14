@@ -7,8 +7,6 @@ const contactBand = document.querySelector(".contact-band");
 const projectBand = document.querySelector(".project-band");
 let openTitle = null;
 
-contactBand.textContent = "+31 6 164 375 35 / hellodashaglu@gmail.com / @daschaglu";
-
 let figures = [];
 const motions = new WeakMap();
 
@@ -505,7 +503,10 @@ aboutButton.addEventListener("click", toggleAbout);
 contactsButton.addEventListener("click", toggleContacts);
 
 sticker.addEventListener("click", hideAbout);
-contactBand.addEventListener("click", hideContacts);
+contactBand.addEventListener("click", (event) => {
+  if (event.target.closest("a")) return;
+  hideContacts();
+});
 
 projectBand.addEventListener("click", hideProjectBand);
 

@@ -298,6 +298,18 @@ button.caption-title {
   color: #fff;
 }
 
+.contact-band a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+}
+
+.contact-band a:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 3px;
+}
+
 .sticker {
   background: #ff4fa3;
 }
@@ -415,5 +427,22 @@ button.caption-title {
     line-height: 24px;
     padding: 10px 22px;
     font-size: 17px;
+  }
+
+  .contact-band:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .contact-sep {
+    display: none;
+  }
+
+  .contact-band a,
+  .contact-phone {
+    display: block;
+    padding: 6px 8px;
   }
 }
