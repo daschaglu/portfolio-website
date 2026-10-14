@@ -146,6 +146,6 @@ const projects = [
     width: 45,
     caption: "SHNIT Short Film Festival",
     description: "Design materials for SHNIT Short Film Festival.",
-    media: ["images/IMG_3669.jpg", "images/mamm_shnit_experiments.jpg", "images/facebook.jpg"],
+    media: ["images/IMG_3669.jpg", "images/mamm_shnit_experiments.jpg", "images/Facebook.jpg"],
   },
 ];
