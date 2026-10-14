@@ -145,6 +145,11 @@ function setWidth(el, width, animate) {
 
 function setShift(track, offset, animate) {
   const to = -offset;
+  if (track === zoomedTrack) {
+    track.dataset.zoomTransform = `translateX(${to}px)`;
+    track.style.left = `${to}px`;
+    return;
+  }
   if (!animate) {
     stopMotion(track);
     track.style.transform = `translateX(${to}px)`;
@@ -294,6 +299,7 @@ function showSlide(piece, index, animate) {
 
   const next = Math.max(0, Math.min(index, slides.length - 1));
   const changed = next !== Number(piece.dataset.index || 0);
+  if (changed && zoomedPiece === piece) dropZoom();
   piece.dataset.index = String(next);
 
   slides.forEach((slide, i) => {
@@ -410,6 +416,7 @@ function applyFilter(category) {
 }
 
 function layoutAll() {
+  dropZoom();
   document.querySelectorAll(".piece").forEach((piece) => {
     showSlide(piece, Number(piece.dataset.index || 0));
   });
@@ -535,6 +542,334 @@ work.addEventListener(
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
+
+let zoomedVideo = null;
+let zoomedPiece = null;
+let zoomedTrack = null;
+let baseRect = null;
+let zoomScale = 1;
+let zoomX = 0;
+let zoomY = 0;
+let zoomGesture = null;
+let pinchHappened = false;
+let suppressZoomClick = false;
+let zoomLockedUntil = 0;
+let videoTapTimer = 0;
+let lastVideoTap = null;
+let lastVideoTapAt = 0;
+
+function isActiveVideo(video) {
+  const piece = video.closest(".piece");
+  const slide = video.closest(".slide");
+  const figure = video.closest("figure");
+  if (!piece || !slide || !figure || figure.hidden) return false;
+  const slides = [...piece.querySelectorAll(".slide")];
+  return slides[Number(piece.dataset.index || 0)] === slide;
+}
+
+function videoHits(video, x, y, loose) {
+  const rect = video.getBoundingClientRect();
+  if (rect.width < 8 || rect.height < 8) return false;
+  if (loose && !isActiveVideo(video)) return false;
+  const slop = loose ? 80 : 0;
+  return x >= rect.left - slop && x <= rect.right + slop && y >= rect.top - slop && y <= rect.bottom + slop;
+}
+
+function videoForPinch(touches) {
+  const x = (touches[0].clientX + touches[1].clientX) / 2;
+  const y = (touches[0].clientY + touches[1].clientY) / 2;
+  if (zoomedVideo && videoHits(zoomedVideo, x, y, false)) return zoomedVideo;
+  if (zoomedVideo) return null;
+  return [...document.querySelectorAll(".slide video")].find((video) => videoHits(video, x, y, true)) || null;
+}
+
+function applyZoom(animate) {
+  if (!zoomedVideo) return;
+  zoomedVideo.style.transition = animate ? "transform 220ms ease" : "none";
+  zoomedVideo.style.transform = `translate(${zoomX}px, ${zoomY}px) scale(${zoomScale})`;
+}
+
+function clampZoomPan() {
+  if (!zoomedVideo || !baseRect) return;
+  const halfW = (baseRect.width * zoomScale) / 2;
+  const halfH = (baseRect.height * zoomScale) / 2;
+  const edge = 64;
+  let cx = baseRect.left + baseRect.width / 2 + zoomX;
+  let cy = baseRect.top + baseRect.height / 2 + zoomY;
+  cx = Math.min(window.innerWidth - edge + halfW, Math.max(edge - halfW, cx));
+  cy = Math.min(window.innerHeight - edge + halfH, Math.max(edge - halfH, cy));
+  zoomX = cx - (baseRect.left + baseRect.width / 2);
+  zoomY = cy - (baseRect.top + baseRect.height / 2);
+}
+
+function dropZoom() {
+  if (!zoomedVideo) return;
+  const video = zoomedVideo;
+  const track = zoomedTrack;
+  zoomedVideo = null;
+  zoomedPiece = null;
+  zoomedTrack = null;
+  baseRect = null;
+  zoomScale = 1;
+  zoomX = 0;
+  zoomY = 0;
+  zoomGesture = null;
+  video.style.position = "";
+  video.style.left = "";
+  video.style.top = "";
+  video.style.width = "";
+  video.style.height = "";
+  video.style.margin = "";
+  video.style.zIndex = "";
+  video.style.transform = "";
+  video.style.transformOrigin = "";
+  video.style.transition = "";
+  video.style.touchAction = "";
+  if (track) {
+    track.style.position = "";
+    track.style.left = "";
+    track.style.transform = track.dataset.zoomTransform || "";
+    delete track.dataset.zoomTransform;
+  }
+}
+
+function liftZoom(video) {
+  const track = video.closest(".track");
+  const rect = video.getBoundingClientRect();
+  const shift = readShift(track);
+  track.dataset.zoomTransform = track.style.transform;
+  track.style.transform = "none";
+  track.style.position = "relative";
+  track.style.left = `${shift}px`;
+  video.style.position = "fixed";
+  video.style.left = `${rect.left}px`;
+  video.style.top = `${rect.top}px`;
+  video.style.width = `${rect.width}px`;
+  video.style.height = `${rect.height}px`;
+  video.style.margin = "0";
+  video.style.zIndex = "80";
+  video.style.transformOrigin = "center center";
+  video.style.touchAction = "none";
+  zoomedVideo = video;
+  zoomedPiece = video.closest(".piece");
+  zoomedTrack = track;
+  baseRect = rect;
+  zoomScale = 1;
+  zoomX = 0;
+  zoomY = 0;
+}
+
+function fillZoom(video) {
+  if (zoomedVideo === video) {
+    dropZoom();
+    return;
+  }
+  if (zoomedVideo) dropZoom();
+  liftZoom(video);
+  const rect = baseRect;
+  const pad = 12;
+  const sx = (window.innerWidth - pad * 2) / rect.width;
+  const sy = (window.innerHeight - pad * 2) / rect.height;
+  zoomScale = Math.min(5, Math.max(2, sx, sy));
+  zoomX = window.innerWidth / 2 - (rect.left + rect.width / 2);
+  zoomY = window.innerHeight / 2 - (rect.top + rect.height / 2);
+  clampZoomPan();
+  applyZoom(true);
+}
+
+function advanceVideo(video) {
+  const frame = video.closest(".frame");
+  if (!frame?.classList.contains("is-multi")) return;
+  const piece = video.closest(".piece");
+  const figure = video.closest("figure");
+  resetOthers(figure);
+  const count = piece.querySelectorAll(".slide").length;
+  const index = Number(piece.dataset.index || 0);
+  showSlide(piece, (index + 1) % count, true);
+}
+
+function onVideoTap(video) {
+  const now = performance.now();
+  if (lastVideoTap === video && now - lastVideoTapAt < 320) {
+    clearTimeout(videoTapTimer);
+    lastVideoTap = null;
+    fillZoom(video);
+    return;
+  }
+  lastVideoTap = video;
+  lastVideoTapAt = now;
+  clearTimeout(videoTapTimer);
+  videoTapTimer = setTimeout(() => {
+    lastVideoTap = null;
+    if (zoomedVideo === video) {
+      dropZoom();
+      return;
+    }
+    if (zoomedVideo) return;
+    advanceVideo(video);
+  }, 280);
+}
+
+function swallowZoomClick() {
+  suppressZoomClick = true;
+  setTimeout(() => {
+    suppressZoomClick = false;
+  }, 500);
+}
+
+function beginPinch(video, touches) {
+  clearTimeout(videoTapTimer);
+  lastVideoTap = null;
+  pinchHappened = true;
+  if (zoomedVideo !== video) {
+    if (zoomedVideo) dropZoom();
+    liftZoom(video);
+  }
+  const [a, b] = touches;
+  zoomGesture = {
+    mode: "pinch",
+    dist: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || 1,
+    midX: (a.clientX + b.clientX) / 2,
+    midY: (a.clientY + b.clientY) / 2,
+    scale: zoomScale,
+    x: zoomX,
+    y: zoomY,
+  };
+}
+
+function movePinch(touches) {
+  const [a, b] = touches;
+  const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) || zoomGesture.dist;
+  const midX = (a.clientX + b.clientX) / 2;
+  const midY = (a.clientY + b.clientY) / 2;
+  const ratio = dist / zoomGesture.dist;
+  const nextScale = Math.min(5, Math.max(1, zoomGesture.scale * ratio));
+  const applied = nextScale / zoomGesture.scale;
+  const oldCx = baseRect.left + baseRect.width / 2 + zoomGesture.x;
+  const oldCy = baseRect.top + baseRect.height / 2 + zoomGesture.y;
+  const cx = midX - (zoomGesture.midX - oldCx) * applied;
+  const cy = midY - (zoomGesture.midY - oldCy) * applied;
+  zoomScale = nextScale;
+  zoomX = cx - (baseRect.left + baseRect.width / 2);
+  zoomY = cy - (baseRect.top + baseRect.height / 2);
+  clampZoomPan();
+  applyZoom(false);
+}
+
+function movePan(touch) {
+  const dx = touch.clientX - zoomGesture.x;
+  const dy = touch.clientY - zoomGesture.y;
+  if (!zoomGesture.moved && Math.hypot(dx, dy) < 6) return;
+  zoomGesture.moved = true;
+  zoomX += dx;
+  zoomY += dy;
+  zoomGesture.x = touch.clientX;
+  zoomGesture.y = touch.clientY;
+  clampZoomPan();
+  applyZoom(false);
+}
+
+function finishZoomGesture() {
+  const swallow = pinchHappened || zoomGesture?.moved;
+  pinchHappened = false;
+  zoomGesture = null;
+  if (!zoomedVideo) return;
+  zoomLockedUntil = performance.now() + 400;
+  if (zoomScale < 1.08) dropZoom();
+  else applyZoom(false);
+  if (swallow) swallowZoomClick();
+}
+
+document.addEventListener(
+  "touchstart",
+  (event) => {
+    if (!isPhone()) return;
+    if (event.touches.length === 2) {
+      const video = videoForPinch(event.touches);
+      if (!video) return;
+      event.preventDefault();
+      beginPinch(video, event.touches);
+      return;
+    }
+    if (event.touches.length === 1 && zoomedVideo && videoHits(zoomedVideo, event.touches[0].clientX, event.touches[0].clientY, false)) {
+      zoomGesture = { mode: "pan", x: event.touches[0].clientX, y: event.touches[0].clientY, moved: false };
+    }
+  },
+  { passive: false }
+);
+
+document.addEventListener(
+  "touchmove",
+  (event) => {
+    if (!zoomGesture) return;
+    if (zoomGesture.mode === "pinch" && event.touches.length >= 2) {
+      event.preventDefault();
+      movePinch(event.touches);
+      return;
+    }
+    if (zoomGesture.mode === "pan" && event.touches.length === 1) {
+      if (zoomGesture.moved || Math.hypot(event.touches[0].clientX - zoomGesture.x, event.touches[0].clientY - zoomGesture.y) >= 6) {
+        event.preventDefault();
+      }
+      movePan(event.touches[0]);
+    }
+  },
+  { passive: false }
+);
+
+document.addEventListener("touchend", (event) => {
+  if (!zoomGesture) return;
+  if (zoomGesture.mode === "pinch" && event.touches.length >= 2) {
+    beginPinch(zoomedVideo, event.touches);
+    return;
+  }
+  if (event.touches.length === 1) {
+    zoomGesture = { mode: "pan", x: event.touches[0].clientX, y: event.touches[0].clientY };
+    return;
+  }
+  finishZoomGesture();
+});
+
+document.addEventListener("touchcancel", () => {
+  if (zoomGesture) finishZoomGesture();
+});
+
+document.addEventListener(
+  "click",
+  (event) => {
+    if (!isPhone()) return;
+    if (suppressZoomClick) {
+      suppressZoomClick = false;
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    const video = event.target.closest?.("video");
+    if (video && (video === zoomedVideo || isActiveVideo(video))) {
+      event.preventDefault();
+      event.stopPropagation();
+      onVideoTap(video);
+      return;
+    }
+    if (!zoomedVideo) return;
+    const chrome = event.target.closest("#contacts, #about, .filter, .contact-band, .sticker, .project-band, .pages");
+    dropZoom();
+    if (!chrome) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  },
+  true
+);
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (zoomGesture || performance.now() < zoomLockedUntil) return;
+    dropZoom();
+  },
+  { passive: true }
+);
 
 window.addEventListener("resize", layoutAll);
 
