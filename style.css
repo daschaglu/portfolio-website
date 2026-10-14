@@ -343,7 +343,8 @@ button.caption-title {
     overflow-y: auto;
   }
 
-  .slide video {
+  .slide video,
+  .slide img.is-landscape {
     touch-action: pan-y;
   }
 

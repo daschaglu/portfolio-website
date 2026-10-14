@@ -120,6 +120,11 @@ function createMedia(src, caption) {
   const img = document.createElement("img");
   img.src = src;
   img.alt = caption || "";
+  const mark = () => {
+    img.classList.toggle("is-landscape", img.naturalWidth > img.naturalHeight);
+  };
+  img.addEventListener("load", mark);
+  if (img.complete) mark();
   return img;
 }
 
@@ -558,6 +563,17 @@ let videoTapTimer = 0;
 let lastVideoTap = null;
 let lastVideoTapAt = 0;
 
+function isZoomTarget(el) {
+  if (!el?.closest?.(".slide")) return false;
+  if (el.tagName === "VIDEO") return true;
+  if (el.tagName !== "IMG") return false;
+  const w = el.naturalWidth;
+  const h = el.naturalHeight;
+  if (w && h) return w > h;
+  const rect = el.getBoundingClientRect();
+  return rect.width > rect.height + 4;
+}
+
 function isActiveVideo(video) {
   const piece = video.closest(".piece");
   const slide = video.closest(".slide");
@@ -580,7 +596,7 @@ function videoForPinch(touches) {
   const y = (touches[0].clientY + touches[1].clientY) / 2;
   if (zoomedVideo && videoHits(zoomedVideo, x, y, false)) return zoomedVideo;
   if (zoomedVideo) return null;
-  return [...document.querySelectorAll(".slide video")].find((video) => videoHits(video, x, y, true)) || null;
+  return [...document.querySelectorAll(".slide video, .slide img")].find((el) => isZoomTarget(el) && videoHits(el, x, y, true)) || null;
 }
 
 function applyZoom(animate) {
@@ -844,8 +860,8 @@ document.addEventListener(
       event.stopPropagation();
       return;
     }
-    const video = event.target.closest?.("video");
-    if (video && (video === zoomedVideo || isActiveVideo(video))) {
+    const video = event.target.closest?.("video, img");
+    if (video && isZoomTarget(video) && (video === zoomedVideo || isActiveVideo(video))) {
       event.preventDefault();
       event.stopPropagation();
       onVideoTap(video);
