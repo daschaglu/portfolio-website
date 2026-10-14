@@ -422,6 +422,7 @@ function applyFilter(category) {
 
 function layoutAll() {
   dropZoom();
+  alignProjectBand();
   document.querySelectorAll(".piece").forEach((piece) => {
     showSlide(piece, Number(piece.dataset.index || 0));
   });
@@ -483,8 +484,17 @@ function showProjectDescription(text, title, category) {
   projectBand.dataset.category = category || "editorial";
   projectBand.textContent = text;
   projectBand.hidden = false;
+  alignProjectBand();
   title.setAttribute("aria-expanded", "true");
   openTitle = title;
+}
+
+function alignProjectBand() {
+  if (projectBand.hidden) return;
+  const range = document.createRange();
+  range.selectNodeContents(projectBand);
+  const lines = [...range.getClientRects()].filter((rect) => rect.width > 2);
+  projectBand.classList.toggle("is-single", lines.length < 2);
 }
 
 function toggleAbout() {

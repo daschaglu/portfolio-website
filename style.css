@@ -208,18 +208,22 @@ button.caption-title {
   width: 100%;
   min-height: 34px;
   margin: 0;
-  padding: 8px max(10vw, calc(50% - 17em));
+  padding: 8px max(10vw, calc(50% - 20em));
   background: #fff700;
   border: 0;
   color: var(--color);
   font-size: 20px;
   font-weight: 400;
   line-height: 26px;
-  text-align: center;
+  text-align: left;
   transform: translateY(-50%);
   -webkit-text-stroke: var(--text-stroke);
   cursor: pointer;
   transition: opacity 0.3s ease;
+}
+
+.project-band.is-single {
+  text-align: center;
 }
 
 .project-band[data-category="editorial"] {
