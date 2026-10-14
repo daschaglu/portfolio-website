@@ -208,7 +208,7 @@ button.caption-title {
   width: 100%;
   min-height: 34px;
   margin: 0;
-  padding: 4px 12vw;
+  padding: 8px max(10vw, calc(50% - 17em));
   background: #fff700;
   border: 0;
   color: var(--color);
