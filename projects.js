@@ -23,7 +23,7 @@ const projects = [
     caption: "Playdate",
     description: "Playdate is a student-led series of peer-to-peer workshops that I co-host with Alexandra Vitko at the Royal Academy of Art (KABK). Born out of a desire to explore what’s missing from the traditional curriculum, we're trying to create space for interdisciplinary exchange, hands-on learning, and informal critical discussion. Every two weeks, we invite fellow students to lead workshops in their own fields of interest – from ceramics and sound editing to set design and publishing – offering an open, collaborative format for skill-sharing and community building.",
     media: [
-      "images/playdate-season-2.png",
+      "images/playdate-season-2.jpg",
       "images/playdate_session_2_web.png",
       "images/playdate_3_web.png",
       "images/playdate-1.png",
